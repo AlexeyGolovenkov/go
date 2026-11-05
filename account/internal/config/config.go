@@ -1,0 +1,31 @@
+package config
+
+import (
+	"log"
+
+	"github.com/caarlos0/env/v10"
+	"github.com/joho/godotenv"
+)
+
+// Contains app configuration
+type Config struct {
+	ServiceName string `env:"SERVICE_NAME" required:"true" default:"account-service"`
+	AppEnv      string `env:"APP_ENV" required:"true" default:"development"`
+	Host        string `env:"HTTP_HOST" required:"true" default:"localhost"`
+	Port        string `env:"HTTP_PORT" required:"true" default:"9000"`
+	LogLevel    string `env:"LOG_LEVEL" required:"true" default:"info"`
+}
+
+// Loads configuration from environment variables
+func Load() (*Config, error) {
+	if err := godotenv.Load(); err != nil {
+		log.Println("Warning: .env file not found, using system environment varables")
+	}
+
+	cfg := &Config{}
+	err := env.Parse(cfg)
+	if err != nil {
+		return nil, err
+	}
+	return cfg, nil
+}
