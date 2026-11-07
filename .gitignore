@@ -34,6 +34,8 @@ go.work.sum
 
 # Build artefacts
 bin/
+docs/
 
 .DS_Store
 *.swp
+
