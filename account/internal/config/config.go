@@ -14,6 +14,7 @@ type Config struct {
 	Host        string `env:"HTTP_HOST" required:"true" default:"localhost"`
 	Port        string `env:"HTTP_PORT" required:"true" default:"9000"`
 	LogLevel    string `env:"LOG_LEVEL" required:"true" default:"info"`
+	DbDsn       string `env:"DB_DSN" required:"true" default:""`
 }
 
 // Loads configuration from environment variables

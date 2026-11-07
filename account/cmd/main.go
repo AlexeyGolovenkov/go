@@ -1,9 +1,14 @@
 package main
 
 import (
+	"log"
+
 	"account/internal/config"
 	"account/internal/logger"
-	"log"
+	"account/internal/repository"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 func main() {
@@ -13,6 +18,16 @@ func main() {
 	}
 
 	logger := logger.New(cfg)
+
+	db, err := gorm.Open(postgres.Open(cfg.DbDsn), &gorm.Config{})
+	if err != nil {
+		logger.Error().Msgf("Failed to connect to database: %v", err)
+		return
+	}
+	logger.Info().Msg("Database connected")
+
+	repo := repository.NewRepository(db, &logger)
+	_ = repo
 
 	logger.Info().Msg("Service starting up")
 }
