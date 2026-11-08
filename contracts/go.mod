@@ -1,9 +1,8 @@
-module github.com/alexeygolovenkov/go/contracts
+module github.com/AlexeyGolovenkov/go/contracts
 
 go 1.26.1
 
 require (
-	github.com/AlexeyGolovenkov/go v0.0.0-20261108121438-a171ec85d1cc
 	google.golang.org/genproto/googleapis/api v0.0.0-20261104224025-d1e00e9f33ab
 	google.golang.org/grpc v1.85.0
 	google.golang.org/protobuf v1.36.12
