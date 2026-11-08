@@ -6,6 +6,7 @@ option go_package = "github.com/AlexeyGolovenkov/go/contracts/account/go;account
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "account_model.proto";
+import "pagination/pagination.proto";
 
 service Account {
 
@@ -46,7 +47,7 @@ message CreateUserRequest {
   CreateUser user = 1;
 }
 
-message GetUsersRequest {
+message GetUserRequest {
   uint64 user_id = 1;
 }
 
