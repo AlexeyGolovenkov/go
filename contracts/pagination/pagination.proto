@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package account;
+option go_package = "github.com/AlexeyGolovenkov/go/contracts/pagination/go;account";
+
+message Pagination {
+  uint32 offset = 1;
+  uint32 limit = 2;
+}
