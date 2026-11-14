@@ -2,6 +2,7 @@ package app
 
 import (
 	"account/internal/config"
+	_ "account/internal/migrations"
 	"account/internal/repository"
 	"account/internal/server"
 	"account/internal/service"
@@ -11,6 +12,7 @@ import (
 	"net"
 
 	accountpb "github.com/AlexeyGolovenkov/go/contracts/account/go"
+	_ "github.com/lib/pq"
 	"github.com/pressly/goose/v3"
 	"github.com/rs/zerolog"
 	"google.golang.org/grpc"
@@ -28,9 +30,9 @@ type App struct {
 	grpcServer        *grpc.Server
 }
 
-func New(logger *zerolog.Logger, cfg config.Config) *App {
+func New(logger *zerolog.Logger, cfg *config.Config) *App {
 	return &App{
-		cfg:    &cfg,
+		cfg:    cfg,
 		logger: logger,
 	}
 }

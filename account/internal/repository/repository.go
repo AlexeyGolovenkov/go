@@ -41,7 +41,7 @@ func (r *Repository) GetUser(ctx context.Context, userID uint64) (model.User, er
 	var user repomodel.User
 	res := r.db.WithContext(ctx).
 		Model(&repomodel.User{}).
-		Where("id == ?", userID).
+		Where("id = ?", userID).
 		First(&user)
 
 	if errors.Is(res.Error, gorm.ErrRecordNotFound) {
@@ -80,7 +80,7 @@ func (r *Repository) DeleteUser(ctx context.Context, userID uint64) error {
 	return nil
 }
 
-func (r *Repository) UpdateUser(ctx context.Context, userID int64, user model.UpdateUser) error {
+func (r *Repository) UpdateUser(ctx context.Context, userID uint64, user model.UpdateUser) error {
 	res := r.db.WithContext(ctx).
 		Where("id = ?", userID).
 		Updates(user)
