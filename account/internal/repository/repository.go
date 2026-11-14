@@ -82,6 +82,7 @@ func (r *Repository) DeleteUser(ctx context.Context, userID uint64) error {
 
 func (r *Repository) UpdateUser(ctx context.Context, userID uint64, user model.UpdateUser) error {
 	res := r.db.WithContext(ctx).
+		Model(&repomodel.User{}).
 		Where("id = ?", userID).
 		Updates(user)
 
