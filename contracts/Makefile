@@ -10,7 +10,7 @@ gen: docker-build
 	docker run --rm -v $(abspath $(PROTO_ROOT)):/app $(DOCKER_IMAGE) \
 	bash -c '\
 	  set -e; \
-	  for dir in account pagination; do \
+	  for dir in account pagination auth; do \
 	    echo ">> Processing $$dir"; \
 	    mkdir -p /app/$$dir/go; \
 	    cd /app/$$dir; \
@@ -30,4 +30,4 @@ gen: docker-build
 	'
 
 clean:
-	find account pagination -type d -name go -exec rm -rf {} +
+	find account pagination auth -type d -name go -exec rm -rf {} +
